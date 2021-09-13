@@ -1,11 +1,11 @@
-langauge: python
-python: 
-  - "3.9"
+language: python
+python:
+  - "3.6"
 
-services: 
+services:
   - docker
 
-before_scripts: pip install docker-compose
+before_script: pip install docker-compose
 
 script:
-  - docker-compose run app sh -c "python manage.py test && flake8"
+  - docker-compose run app sh -c "python manage.py wait_for_db && python manage.py test && flake8"
